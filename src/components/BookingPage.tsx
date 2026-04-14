@@ -12,14 +12,25 @@ const iconMap = {
 
 export default function BookingPage() {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   const [selectedTier, setSelectedTier] = React.useState('residential');
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = React.useState('Anytime (8am - 4pm)');
   const [bedrooms, setBedrooms] = React.useState(2);
   const [bathrooms, setBathrooms] = React.useState(1);
   const [windows, setWindows] = React.useState(0);
   const [condition, setCondition] = React.useState('average');
   const [frequency, setFrequency] = React.useState('weekly');
   const [selectedAddons, setSelectedAddons] = React.useState<string[]>([]);
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [address, setAddress] = React.useState('');
+  const [city, setCity] = React.useState('');
+  const [postalCode, setPostalCode] = React.useState('');
+  const [notes, setNotes] = React.useState('');
 
   const ADDON_OPTIONS = [
     { id: 'oven', label: 'Inside Oven', icon: Microwave },
@@ -277,7 +288,7 @@ export default function BookingPage() {
               {/* Time */}
               <div className="space-y-4">
                 <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><Clock className="w-4 h-4"/> Arrival Window</label>
-                <select className="w-full bg-surface-container-highest border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none appearance-none shadow-[0_4px_10px_rgba(0,0,0,0.03)] cursor-pointer">
+                <select value={selectedTime} onChange={e => setSelectedTime(e.target.value)} className="w-full bg-surface-container-highest border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none appearance-none shadow-[0_4px_10px_rgba(0,0,0,0.03)] cursor-pointer">
                   <option>Anytime (8am - 4pm)</option>
                   <option>Morning (8am - 12pm)</option>
                   <option>Afternoon (12pm - 4pm)</option>
@@ -293,34 +304,34 @@ export default function BookingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><User className="w-4 h-4"/> First Name</label>
-                <input type="text" placeholder="Jane" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
+                <input value={firstName} onChange={e => setFirstName(e.target.value)} type="text" placeholder="Jane" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
               </div>
               <div className="space-y-4">
                 <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><User className="w-4 h-4 opacity-0"/> Last Name</label>
-                <input type="text" placeholder="Doe" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
+                <input value={lastName} onChange={e => setLastName(e.target.value)} type="text" placeholder="Doe" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
               </div>
               <div className="space-y-4">
                 <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><Mail className="w-4 h-4"/> Email Address</label>
-                <input type="email" placeholder="jane@example.com" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="jane@example.com" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
               </div>
               <div className="space-y-4">
                 <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><Phone className="w-4 h-4"/> Phone Number</label>
-                <input type="tel" placeholder="(555) 000-0000" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
+                <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="(555) 000-0000" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
               </div>
             </div>
 
             <div className="space-y-4 pt-6 border-t border-outline-variant/10">
               <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><MapPin className="w-4 h-4"/> Service Address</label>
-              <input type="text" placeholder="Street Address" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none mb-4" />
+              <input value={address} onChange={e => setAddress(e.target.value)} type="text" placeholder="Street Address" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none mb-4" />
               <div className="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="City" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
-                <input type="text" placeholder="Postal Code" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
+                <input value={city} onChange={e => setCity(e.target.value)} type="text" placeholder="City" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
+                <input value={postalCode} onChange={e => setPostalCode(e.target.value)} type="text" placeholder="Postal Code" className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium outline-none" />
               </div>
             </div>
 
             <div className="space-y-4 pt-6 border-t border-outline-variant/10">
               <label className="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline flex items-center gap-2"><FileText className="w-4 h-4"/> Specialized Notes</label>
-              <textarea placeholder="e.g. Please use eco-friendly products in the kitchen, and focus heavily on the master bathroom grout." className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium min-h-[120px] outline-none resize-none"></textarea>
+              <textarea value={notes} onChange={e => setNotes(e.target.value)} placeholder="e.g. Please use eco-friendly products in the kitchen, and focus heavily on the master bathroom grout." className="w-full bg-surface-container-highest border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-on-surface font-medium min-h-[120px] outline-none resize-none"></textarea>
             </div>
           </section>
 
@@ -363,9 +374,48 @@ export default function BookingPage() {
               </div>
             </div>
 
-            <div className="mt-10 pt-4">
-              <button onClick={() => setIsSubmitted(true)} className="w-full py-5 rounded-full bg-primary text-white font-headline font-extrabold text-xl shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:scale-[1.02] transition-transform active:scale-95">
-                Submit Booking Form
+            <div className="mt-10 pt-4 space-y-3">
+              {error && <p className="text-red-500 text-sm text-center font-medium">{error}</p>}
+              <button
+                onClick={async () => {
+                  setIsLoading(true);
+                  setError(null);
+                  try {
+                    const res = await fetch('/api/send-booking', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        firstName, lastName, email, phone,
+                        address, city, postalCode, notes,
+                        service: selectedTier,
+                        bedrooms, bathrooms, windows,
+                        condition, frequency,
+                        addons: selectedAddons.map(id => {
+                          const found = [
+                            { id: 'oven', label: 'Inside Oven' },
+                            { id: 'fridge', label: 'Inside Fridge' },
+                            { id: 'laundry', label: 'Laundry' },
+                            { id: 'pets', label: 'Pet Hair Fee' },
+                            { id: 'basement', label: 'Finished Basement' },
+                          ].find(a => a.id === id);
+                          return found?.label ?? id;
+                        }),
+                        date: selectedDate ? selectedDate.toLocaleDateString('en-CA', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : null,
+                        time: selectedTime,
+                      }),
+                    });
+                    if (!res.ok) throw new Error('Failed to send. Please try again.');
+                    setIsSubmitted(true);
+                  } catch (e: any) {
+                    setError(e.message || 'Something went wrong.');
+                  } finally {
+                    setIsLoading(false);
+                  }
+                }}
+                disabled={isLoading}
+                className="w-full py-5 rounded-full bg-primary text-white font-headline font-extrabold text-xl shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:scale-[1.02] transition-transform active:scale-95 disabled:opacity-60 disabled:scale-100"
+              >
+                {isLoading ? 'Sending...' : 'Submit Booking Form'}
               </button>
             </div>
 
