@@ -23,38 +23,53 @@ export default function CommercialPage({ onBookNow }: CommercialPageProps) {
     <div className="flex flex-col w-full">
 
       {/* Hero */}
-      <section className="relative min-h-[75vh] flex items-center overflow-hidden bg-on-surface pt-24">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-on-surface pt-24 pb-16">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-primary/10 pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-8 w-full py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-3xl"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center">
-                <Building2 className="text-secondary w-6 h-6" />
+        <div className="max-w-7xl mx-auto px-6 md:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="max-w-xl"
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center">
+                  <Building2 className="text-secondary w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-secondary bg-secondary/10 px-4 py-1.5 rounded-full">Commercial Cleaning</span>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-secondary bg-secondary/10 px-4 py-1.5 rounded-full">Commercial Cleaning</span>
-            </div>
-            <h1 className="font-headline font-extrabold text-5xl md:text-7xl text-white leading-[1.05] tracking-tighter mb-6">
-              Cleaning That Means <span className="text-secondary">Business.</span>
-            </h1>
-            <p className="text-white/60 text-xl max-w-xl leading-relaxed mb-10">
-              Professional, discreet, and reliable commercial cleaning for offices, retail spaces, and facilities across Calgary. We work around your schedule.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#inquiry" className="bg-secondary text-on-secondary px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-secondary/30">
-                Request a Quote
-              </a>
-              <button onClick={onBookNow} className="bg-white/10 border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-colors">
-                Book Direct
-              </button>
-            </div>
-          </motion.div>
+              <h1 className="font-headline font-extrabold text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tighter mb-6">
+                Cleaning That Means <span className="text-secondary">Business.</span>
+              </h1>
+              <p className="text-white/60 text-lg md:text-xl leading-relaxed mb-10">
+                Professional, discreet, and reliable commercial cleaning for offices, retail spaces, and facilities across Calgary. We work around your schedule.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="#inquiry" className="bg-secondary text-on-secondary px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-secondary/30">
+                  Request a Quote
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative hidden md:block w-full h-[500px] lg:h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-secondary/20 border border-white/10"
+            >
+              <img 
+                src="/images/commercial_hero.png" 
+                alt="Pristine modern corporate office" 
+                className="w-full h-full object-cover transition-transform duration-[2s] hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent pointer-events-none"></div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
