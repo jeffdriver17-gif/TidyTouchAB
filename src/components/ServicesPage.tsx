@@ -200,7 +200,7 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
             <h2 className="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tighter mb-4">Investment in Clarity</h2>
             <p className="text-on-surface-variant text-lg">Tailored pricing models for every scale of luminous order.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Residential */}
             <div className="bg-surface-container-lowest p-8 rounded-3xl flex flex-col">
               <h4 className="text-xl font-bold mb-2">Residential</h4>
@@ -243,6 +243,20 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
                 ))}
               </div>
               <button onClick={onBookNow} className="w-full py-4 rounded-xl bg-surface-container-low font-bold hover:bg-surface-container-high transition-colors">Book Move-In/Out</button>
+            </div>
+            {/* Commercial */}
+            <div className="bg-surface-container-lowest p-8 rounded-3xl flex flex-col">
+              <h4 className="text-xl font-bold mb-2">Commercial</h4>
+              <div className="text-4xl font-extrabold mb-6 text-on-surface"><span className="text-xl font-medium text-on-surface-variant mr-1">Custom</span>Quote</div>
+              <p className="text-on-surface-variant mb-8 text-sm">Professional environments tailored to your facility's scale and schedule.</p>
+              <div className="space-y-4 mb-10 flex-grow">
+                {['Office Workspace Sanity', 'High-Traffic Floor Care', 'Communal Area Hygiene'].map((f) => (
+                  <div key={f} className="flex items-center gap-3 text-sm font-semibold">
+                    <CheckCircle2 className="text-primary w-5 h-5" /> {f}
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => { setIsCorporateModalOpen(true); setIsSubmitted(false); }} className="w-full py-4 rounded-xl bg-surface-container-low font-bold hover:bg-secondary hover:text-on-secondary transition-all">Corporate Inquiry</button>
             </div>
             {/* Airbnb */}
             <div className="bg-surface-container-lowest p-8 rounded-3xl flex flex-col">
