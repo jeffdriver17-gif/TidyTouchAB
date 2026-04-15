@@ -8,6 +8,7 @@ interface ServicesPageProps {
 }
 
 export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProps) {
+  // Corporate inquiry state
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +18,18 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [details, setDetails] = useState('');
+
+  // Airbnb inquiry state
+  const [isAirbnbModalOpen, setIsAirbnbModalOpen] = useState(false);
+  const [isAirbnbSubmitted, setIsAirbnbSubmitted] = useState(false);
+  const [isAirbnbLoading, setIsAirbnbLoading] = useState(false);
+  const [airbnbError, setAirbnbError] = useState<string | null>(null);
+  const [bnbFirstName, setBnbFirstName] = useState('');
+  const [bnbLastName, setBnbLastName] = useState('');
+  const [bnbEmail, setBnbEmail] = useState('');
+  const [bnbAddress, setBnbAddress] = useState('');
+  const [bnbUnits, setBnbUnits] = useState('');
+  const [bnbNotes, setBnbNotes] = useState('');
 
   return (
     <div className="flex flex-col w-full">
@@ -139,24 +152,71 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
               </div>
             </div>
 
-            {/* Airbnb / Short-Term Rental */}
-            <div className="md:col-span-12 bg-surface-container-low p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-10">
-              <div className="flex-shrink-0 w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center">
-                <Key className="text-primary w-8 h-8" />
-              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Airbnb & Short-Term Rental Section */}
+      <section className="py-24 bg-surface px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative rounded-[3rem] overflow-hidden bg-on-surface">
+            {/* Background texture */}
+            <div className="absolute inset-0 bg-gradient-to-br from-on-surface via-on-surface to-primary/30 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none translate-x-1/4 -translate-y-1/4" />
+
+            <div className="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center gap-12">
+              {/* Left content */}
               <div className="flex-grow">
-                <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] text-primary bg-primary-fixed px-3 py-1 rounded-full mb-3">Short-Term Rental</span>
-                <h3 className="text-2xl font-bold text-on-surface mb-2">Airbnb & Vacation Rental Turnovers</h3>
-                <p className="text-on-surface-variant max-w-2xl">Running an Airbnb or short-term rental? We specialize in fast, flawless turnovers between guests — linen changes, full sanitization, and restock — so every stay feels like the first.</p>
-              </div>
-              <div className="flex flex-col gap-3 min-w-[200px]">
-                {['Full Linen Turnover', 'Guest-Ready Sanitization', 'Restock & Refresh'].map((f) => (
-                  <div key={f} className="flex items-center gap-2 text-sm font-semibold text-on-surface">
-                    <CheckCircle2 className="text-primary w-4 h-4 shrink-0" /> {f}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center">
+                    <Key className="text-primary w-6 h-6" />
                   </div>
-                ))}
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary bg-primary/10 px-4 py-1.5 rounded-full">Short-Term Rental</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tighter mb-4 leading-tight">
+                  Airbnb &<br />Short-Term Rentals
+                </h2>
+                <p className="text-white/70 text-lg max-w-xl mb-8 leading-relaxed">
+                  Running a short-term rental? We handle the full turnaround between guests — linens changed, surfaces sanitized, and essentials restocked — so every stay feels brand new.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+                  {[
+                    { label: 'Full Linen Turnover', sub: 'Fresh sheets & towels every time' },
+                    { label: 'Guest-Ready Sanitization', sub: 'High-touch surfaces & bathrooms' },
+                    { label: 'Restock & Refresh', sub: 'Toiletries, paper goods & more' },
+                  ].map((f) => (
+                    <div key={f.label} className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                      <CheckCircle2 className="text-primary w-5 h-5 mb-3" />
+                      <p className="text-white font-bold text-sm mb-1">{f.label}</p>
+                      <p className="text-white/50 text-xs">{f.sub}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <button
+                    onClick={() => { setIsAirbnbModalOpen(true); setIsAirbnbSubmitted(false); }}
+                    className="bg-primary text-on-primary px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl shadow-primary/30"
+                  >
+                    Get a Turnover Quote
+                  </button>
+                  <button
+                    onClick={onBookNow}
+                    className="bg-white/10 border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-colors"
+                  >
+                    Book Now
+                  </button>
+                </div>
               </div>
-              <button onClick={onBookNow} className="shrink-0 px-8 py-4 rounded-2xl bg-primary text-on-primary font-bold hover:scale-105 transition-transform shadow-lg shadow-primary/20">Book Turnover</button>
+
+              {/* Right stat card */}
+              <div className="shrink-0 bg-white/5 border border-white/10 rounded-3xl p-10 text-center min-w-[220px]">
+                <span className="font-headline font-extrabold text-5xl text-primary block mb-2">From</span>
+                <span className="font-headline font-extrabold text-6xl text-white block mb-4">$179</span>
+                <p className="text-white/50 text-sm font-medium">per turnover</p>
+                <div className="mt-6 pt-6 border-t border-white/10 text-xs text-white/40 leading-relaxed">
+                  Pricing varies by<br />property size & scope
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -225,7 +285,7 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
                   </div>
                 ))}
               </div>
-              <button onClick={onBookNow} className="w-full py-4 rounded-xl bg-surface-container-low font-bold hover:bg-surface-container-high transition-colors">Book Turnover</button>
+              <button onClick={() => { setIsAirbnbModalOpen(true); setIsAirbnbSubmitted(false); }} className="w-full py-4 rounded-xl bg-surface-container-low font-bold hover:bg-primary hover:text-on-primary transition-all">Get a Quote</button>
             </div>
           </div>
         </div>
@@ -276,6 +336,115 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
           </div>
         </div>
       </section>
+
+      {/* Airbnb Inquiry Modal */}
+      <AnimatePresence>
+        {isAirbnbModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-surface-container-lowest w-full max-w-lg rounded-3xl p-8 relative shadow-2xl"
+            >
+              <button
+                onClick={() => setIsAirbnbModalOpen(false)}
+                className="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {!isAirbnbSubmitted ? (
+                <>
+                  <div className="mb-8 pr-12">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center">
+                        <Key className="text-primary w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-primary">Airbnb & Short-Term Rental</span>
+                    </div>
+                    <h3 className="text-3xl font-extrabold font-headline text-on-surface mb-2">Get a Turnover Quote</h3>
+                    <p className="text-on-surface-variant">Tell us about your property and we'll put together a custom cleaning plan for your rental.</p>
+                  </div>
+
+                  <form onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsAirbnbLoading(true);
+                    setAirbnbError(null);
+                    try {
+                      const res = await fetch('/api/send-airbnb-inquiry', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ firstName: bnbFirstName, lastName: bnbLastName, email: bnbEmail, address: bnbAddress, units: bnbUnits, notes: bnbNotes }),
+                      });
+                      if (!res.ok) throw new Error('Failed to send. Please try again.');
+                      setIsAirbnbSubmitted(true);
+                    } catch (err: any) {
+                      setAirbnbError(err.message || 'Something went wrong.');
+                    } finally {
+                      setIsAirbnbLoading(false);
+                    }
+                  }} className="space-y-4 font-body">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">First Name</label>
+                        <input required value={bnbFirstName} onChange={e => setBnbFirstName(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Jane" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Last Name</label>
+                        <input required value={bnbLastName} onChange={e => setBnbLastName(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Doe" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Email</label>
+                      <input required type="email" value={bnbEmail} onChange={e => setBnbEmail(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="jane@email.com" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Property Address</label>
+                      <input required value={bnbAddress} onChange={e => setBnbAddress(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="123 Main St, Calgary, AB" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Number of Units</label>
+                      <input value={bnbUnits} onChange={e => setBnbUnits(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="e.g. 1 condo, 2 cabins..." />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Additional Notes (Optional)</label>
+                      <textarea value={bnbNotes} onChange={e => setBnbNotes(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors min-h-[90px] text-sm resize-none" placeholder="Approx. sq ft, turnover frequency, access details, etc." />
+                    </div>
+
+                    {airbnbError && <p className="text-red-500 text-sm font-medium">{airbnbError}</p>}
+
+                    <button type="submit" disabled={isAirbnbLoading} className="w-full py-4 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-colors mt-2 font-headline text-lg shadow-lg shadow-primary/20 disabled:opacity-60">
+                      {isAirbnbLoading ? 'Sending...' : 'Request Quote'}
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className="py-12 text-center">
+                  <div className="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Key className="w-10 h-10 text-primary" />
+                  </div>
+                  <h3 className="text-3xl font-extrabold font-headline text-on-surface mb-2">Quote Request Sent</h3>
+                  <p className="text-on-surface-variant mb-8 text-lg">Thanks! We'll review your property details and get back to you within 24 hours with a custom turnover plan.</p>
+                  <button onClick={() => setIsAirbnbModalOpen(false)} className="w-full py-4 rounded-xl bg-surface-container-high font-bold hover:bg-surface-variant transition-colors font-headline">
+                    Close Window
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Corporate Inquiry Modal */}
       <AnimatePresence>
