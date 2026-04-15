@@ -10,6 +10,13 @@ interface ServicesPageProps {
 export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProps) {
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [inquiryError, setInquiryError] = useState<string | null>(null);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [details, setDetails] = useState('');
 
   return (
     <div className="flex flex-col w-full">
@@ -266,35 +273,54 @@ export default function ServicesPage({ onBookNow, onNavigate }: ServicesPageProp
                     <p className="text-on-surface-variant">Elevate your corporate environment. Leave your details below and our commercial director will reach out within 24 hours.</p>
                   </div>
                   
-                  <form onSubmit={(e) => { e.preventDefault(); setIsSubmitted(true); }} className="space-y-4 font-body">
+                  <form onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsLoading(true);
+                    setInquiryError(null);
+                    try {
+                      const res = await fetch('/api/send-inquiry', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ firstName, lastName, company, email, details }),
+                      });
+                      if (!res.ok) throw new Error('Failed to send. Please try again.');
+                      setIsSubmitted(true);
+                    } catch (err: any) {
+                      setInquiryError(err.message || 'Something went wrong.');
+                    } finally {
+                      setIsLoading(false);
+                    }
+                  }} className="space-y-4 font-body">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">First Name</label>
-                        <input required className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Jane" />
+                        <input required value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Jane" />
                       </div>
                       <div className="space-y-2">
                         <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Last Name</label>
-                        <input required className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Doe" />
+                        <input required value={lastName} onChange={e => setLastName(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Doe" />
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Company Name</label>
-                      <input required className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Acme Corporation" />
+                      <input required value={company} onChange={e => setCompany(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="Acme Corporation" />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Work Email</label>
-                      <input required type="email" className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="jane@acmecorp.com" />
+                      <input required type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors text-sm" placeholder="jane@acmecorp.com" />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Facility Details (Optional)</label>
-                      <textarea className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors min-h-[100px] text-sm resize-none" placeholder="Approximate square footage, frequency needs, etc." />
+                      <textarea value={details} onChange={e => setDetails(e.target.value)} className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors min-h-[100px] text-sm resize-none" placeholder="Approximate square footage, frequency needs, etc." />
                     </div>
-                    
-                    <button type="submit" className="w-full py-4 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-colors mt-6 font-headline text-lg shadow-lg">
-                      Submit Inquiry
+
+                    {inquiryError && <p className="text-red-500 text-sm font-medium">{inquiryError}</p>}
+
+                    <button type="submit" disabled={isLoading} className="w-full py-4 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-colors mt-6 font-headline text-lg shadow-lg disabled:opacity-60">
+                      {isLoading ? 'Sending...' : 'Submit Inquiry'}
                     </button>
                   </form>
                 </>
