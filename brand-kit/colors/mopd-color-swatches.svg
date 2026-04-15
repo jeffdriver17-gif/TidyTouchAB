@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&amp;family=Manrope:wght@500&amp;display=swap');
+      .title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+      .label { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; }
+      .hex   { font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 11px; opacity: 0.65; }
+      .role  { font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 10px; opacity: 0.5; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="420" fill="#fafaf9"/>
+
+  <!-- Title -->
+  <text class="title" x="32" y="50" fill="#1c1917">mop<tspan fill="#F97316">d</tspan>  — Color Palette</text>
+
+  <!-- Row 1 -->
+  <!-- Primary Orange -->
+  <rect x="32" y="72" width="140" height="100" rx="16" fill="#F97316"/>
+  <text class="label" x="42" y="186" fill="#1c1917">Brand Orange</text>
+  <text class="hex"   x="42" y="202" fill="#1c1917">#F97316</text>
+  <text class="role"  x="42" y="216" fill="#1c1917">Primary</text>
+
+  <!-- Primary Container -->
+  <rect x="192" y="72" width="140" height="100" rx="16" fill="#ffedd5"/>
+  <text class="label" x="202" y="186" fill="#1c1917">Peach</text>
+  <text class="hex"   x="202" y="202" fill="#1c1917">#ffedd5</text>
+  <text class="role"  x="202" y="216" fill="#1c1917">Primary Container</text>
+
+  <!-- On Primary Container -->
+  <rect x="352" y="72" width="140" height="100" rx="16" fill="#7c2d12"/>
+  <text class="label" x="362" y="186" fill="#1c1917">Deep Ember</text>
+  <text class="hex"   x="362" y="202" fill="#1c1917">#7c2d12</text>
+  <text class="role"  x="362" y="216" fill="#1c1917">On Primary Container</text>
+
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+  <rect x="512" y="72" width="176" height="100" rx="16" fill="url(#grad1)"/>
+  <text class="label" x="522" y="186" fill="#1c1917">Signature Gradient</text>
+  <text class="hex"   x="522" y="202" fill="#1c1917">#F97316 → #fb923c</text>
+  <text class="role"  x="522" y="216" fill="#1c1917">CTA / Buttons</text>
+
+  <!-- Row 2 -->
+  <!-- Secondary Purple -->
+  <rect x="32" y="240" width="140" height="100" rx="16" fill="#7C3AED"/>
+  <text class="label" x="42" y="354" fill="#1c1917">Brand Purple</text>
+  <text class="hex"   x="42" y="370" fill="#1c1917">#7C3AED</text>
+  <text class="role"  x="42" y="384" fill="#1c1917">Secondary / Commercial</text>
+
+  <!-- Near Black -->
+  <rect x="192" y="240" width="140" height="100" rx="16" fill="#1c1917"/>
+  <text class="label" x="202" y="354" fill="#1c1917">Near Black</text>
+  <text class="hex"   x="202" y="370" fill="#1c1917">#1c1917</text>
+  <text class="role"  x="202" y="384" fill="#1c1917">Dark BG / On Surface</text>
+
+  <!-- Surface -->
+  <rect x="352" y="240" width="140" height="100" rx="16" fill="#fafaf9" stroke="#e2deda" stroke-width="1.5"/>
+  <text class="label" x="362" y="354" fill="#1c1917">Off White</text>
+  <text class="hex"   x="362" y="370" fill="#1c1917">#fafaf9</text>
+  <text class="role"  x="362" y="384" fill="#1c1917">Page Background</text>
+
+  <!-- Muted -->
+  <rect x="512" y="240" width="140" height="100" rx="16" fill="#57534e"/>
+  <text class="label" x="522" y="354" fill="#1c1917">Stone</text>
+  <text class="hex"   x="522" y="370" fill="#1c1917">#57534e</text>
+  <text class="role"  x="522" y="384" fill="#1c1917">Body / Muted Text</text>
+</svg>

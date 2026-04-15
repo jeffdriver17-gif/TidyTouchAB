@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" width="280" height="120">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&amp;display=swap');
+      .wm  { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 66px; letter-spacing: -0.03em; }
+      .tag { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 500; font-size: 15px; letter-spacing: 0.01em; }
+    </style>
+  </defs>
+  <rect width="280" height="120" fill="#1c1917"/>
+  <text class="wm" x="20" y="72" fill="#ffffff">mop<tspan fill="#F97316">d</tspan></text>
+  <text class="tag" x="22" y="100" fill="rgba(255,255,255,0.5)">We cleaned that.</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" width="720" height="500">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap');
+      .title    { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+      .section  { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+      .h1       { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 52px; letter-spacing: -0.03em; }
+      .h2       { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.025em; }
+      .h3       { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; }
+      .body-lg  { font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 18px; }
+      .body-sm  { font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 14px; }
+      .label    { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+      .note     { font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 10px; opacity: 0.4; }
+    </style>
+  </defs>
+
+  <rect width="720" height="500" fill="#fafaf9"/>
+
+  <!-- Title -->
+  <text class="title" x="32" y="50" fill="#1c1917">mop<tspan fill="#F97316">d</tspan>  — Typography</text>
+
+  <!-- Divider -->
+  <line x1="32" y1="66" x2="688" y2="66" stroke="#e2deda" stroke-width="1"/>
+
+  <!-- Headline Font -->
+  <text class="section" x="32" y="92" fill="#a8a29e">Headline Font — Plus Jakarta Sans</text>
+
+  <text class="h1" x="32" y="152" fill="#1c1917">Your Home, Sorted.</text>
+  <text class="note" x="32" y="170" fill="#a8a29e">H1 · Plus Jakarta Sans 800 · 52px · -0.03em tracking</text>
+
+  <text class="h2" x="32" y="214" fill="#1c1917">Meticulous Services</text>
+  <text class="note" x="32" y="230" fill="#a8a29e">H2 · Plus Jakarta Sans 800 · 36px · -0.025em tracking</text>
+
+  <text class="h3" x="32" y="266" fill="#1c1917">Residential Care</text>
+  <text class="note" x="32" y="282" fill="#a8a29e">H3 · Plus Jakarta Sans 700 · 24px · -0.02em tracking</text>
+
+  <!-- Divider -->
+  <line x1="32" y1="304" x2="688" y2="304" stroke="#e2deda" stroke-width="1"/>
+
+  <!-- Body Font -->
+  <text class="section" x="32" y="328" fill="#a8a29e">Body Font — Manrope</text>
+
+  <text class="body-lg" x="32" y="366" fill="#57534e">Boutique cleaning standards for Calgary homes.</text>
+  <text class="note"    x="32" y="382" fill="#a8a29e">Body LG · Manrope 400 · 18px</text>
+
+  <text class="body-sm" x="32" y="416" fill="#57534e">Meticulous, reliable, and obsessively thorough — we cleaned that.</text>
+  <text class="note"    x="32" y="432" fill="#a8a29e">Body SM · Manrope 400 · 14px</text>
+
+  <text class="label"   x="32" y="466" fill="#F97316">Calgary's #1 Rated Clean</text>
+  <text class="note"    x="32" y="482" fill="#a8a29e">Label · Manrope 600 · 11px · 0.15em tracking · uppercase</text>
+</svg>
