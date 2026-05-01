@@ -10,9 +10,7 @@ export default function Footer({ onNavigate }: FooterProps) {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center px-8 md:px-12 py-16 w-full max-w-7xl mx-auto">
         <div className="mb-12 md:mb-0">
           <div className="mb-4">
-            <span className="text-2xl font-extrabold tracking-tight font-headline">
-              <span className="text-on-surface">tidy </span><span className="text-primary">touch</span>
-            </span>
+            <img src="/ttclear.png" alt="Tidy Touch" className="h-10 w-auto object-contain" />
           </div>
           <p className="font-body text-xs uppercase tracking-widest text-on-surface-variant max-w-xs">
             © 2026 Tidy Touch. Calgary's Premium Clean.

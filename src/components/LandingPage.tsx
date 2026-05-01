@@ -144,8 +144,8 @@ export default function LandingPage({ onBookNow, onViewServices }: LandingPagePr
               <img src="/golden_standard.png" alt="Premium Service" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
               
-              <div className="absolute -top-4 -left-2 opacity-20 pointer-events-none transition-transform duration-700 group-hover:scale-110 z-0">
-                <span className="text-6xl font-extrabold tracking-tight font-headline text-white select-none">tidy <span className="text-primary">touch</span></span>
+              <div className="absolute -top-4 -left-2 opacity-10 pointer-events-none transition-transform duration-700 group-hover:scale-110 z-0">
+                <img src="/ttclear.png" alt="" className="w-64 object-contain select-none" />
               </div>
 
               <div className="relative z-10 drop-shadow-md">
@@ -155,8 +155,8 @@ export default function LandingPage({ onBookNow, onViewServices }: LandingPagePr
             </div>
 
             <div className="md:col-span-2 bg-primary-container text-on-primary-container p-10 rounded-[2.5rem] flex items-center gap-6">
-              <div className="bg-white/50 px-3 py-1 rounded-2xl flex items-center justify-center shrink-0">
-                <span className="text-xs font-extrabold font-headline tracking-tight"><span className="text-on-primary-container">tidy </span><span className="text-primary">touch</span></span>
+              <div className="bg-white/50 px-3 py-2 rounded-2xl flex items-center justify-center shrink-0">
+                <img src="/ttclear.png" alt="Tidy Touch" className="h-6 w-auto object-contain" />
               </div>
               <div>
                 <h4 className="font-headline font-bold text-xl mb-1">Eco-Conscious</h4>
