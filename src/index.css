@@ -5,17 +5,17 @@
   --font-headline: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary: #F97316;
+  --color-primary: #10b981;
   --color-on-primary: #ffffff;
-  --color-primary-container: #ffedd5;
-  --color-on-primary-container: #7c2d12;
-  --color-primary-fixed: #ffedd5;
-  --color-on-primary-fixed: #7c2d12;
+  --color-primary-container: #d1fae5;
+  --color-on-primary-container: #065f46;
+  --color-primary-fixed: #d1fae5;
+  --color-on-primary-fixed: #065f46;
 
-  --color-secondary: #7C3AED;
+  --color-secondary: #0d9488;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #ede9fe;
-  --color-on-secondary-container: #4c1d95;
+  --color-secondary-container: #ccfbf1;
+  --color-on-secondary-container: #134e4a;
 
   --color-tertiary: #0ea5e9;
   --color-on-tertiary: #ffffff;
@@ -38,7 +38,7 @@
 
 @layer utilities {
   .signature-gradient {
-    background: linear-gradient(135deg, #F97316 0%, #fb923c 100%);
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
   }
 
   .glass-nav {

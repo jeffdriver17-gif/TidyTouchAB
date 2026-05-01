@@ -48,14 +48,14 @@ export const TESTIMONIALS = [
     id: 1,
     name: 'James D.',
     role: 'Executive, Mount Royal',
-    content: "Mopd transformed my chaotic downtown condo into a sanctuary. I travel for work constantly, and coming home to their spotless finish is the best part of my week. Worth every penny.",
+    content: "Tidy Touch transformed my chaotic downtown condo into a sanctuary. I travel for work constantly, and coming home to their spotless finish is the best part of my week. Worth every penny.",
     initials: 'JD'
   },
   {
     id: 2,
     name: 'Maria L.',
     role: 'Homeowner, Aspen Woods',
-    content: "With two dogs and a toddler, I didn't think my white rugs would survive. Mopd uses products that are safe but incredibly effective. Their team is professional and so kind.",
+    content: "With two dogs and a toddler, I didn't think my white rugs would survive. Tidy Touch uses products that are safe but incredibly effective. Their team is professional and so kind.",
     initials: 'ML'
   }
 ];

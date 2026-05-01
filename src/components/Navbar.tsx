@@ -28,8 +28,8 @@ export default function Navbar({ onBookNow, onNavigate, currentView }: NavbarPro
           className="flex items-center cursor-pointer"
           onClick={() => onNavigate('home')}
         >
-          <span className="text-3xl font-extrabold tracking-tight font-headline">
-            <span className="text-on-surface">mop</span><span className="text-primary">d</span>
+          <span className="text-2xl font-extrabold tracking-tight font-headline">
+            <span className="text-on-surface">tidy </span><span className="text-primary">touch</span>
           </span>
         </div>
 

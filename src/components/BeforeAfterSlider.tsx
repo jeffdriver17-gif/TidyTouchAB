@@ -46,7 +46,7 @@ export default function BeforeAfterSlider() {
               className={cn(
                 "px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 ring-1",
                 activeSlide === i 
-                  ? "bg-primary text-white ring-primary shadow-[0_4px_14px_0_rgba(249,115,22,0.4)] scale-105"
+                  ? "bg-primary text-white ring-primary shadow-[0_4px_14px_0_rgba(16,185,129,0.4)] scale-105"
                   : "bg-surface-container-highest text-on-surface-variant hover:bg-surface-variant ring-outline-variant/30"
               )}
             >
@@ -93,7 +93,7 @@ export default function BeforeAfterSlider() {
           className="absolute top-6 left-6 bg-primary text-white backdrop-blur-md px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest pointer-events-none shadow-xl border border-white/20 z-10"
           style={{ opacity: sliderPosition > 10 ? 1 : 0, transition: 'opacity 0.2s' }}
         >
-          After Mopd
+          After Tidy Touch
         </div>
 
         {/* Slider Line & Handle */}
