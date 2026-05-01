@@ -28,7 +28,7 @@ export default function Navbar({ onBookNow, onNavigate, currentView }: NavbarPro
           className="flex items-center cursor-pointer"
           onClick={() => onNavigate('home')}
         >
-          <img src="/ttclear.png" alt="Tidy Touch" className="h-9 w-auto object-contain" />
+          <img src="/ttclear.png" alt="Tidy Touch" className="h-14 w-auto object-contain" />
         </div>
 
         <div className="hidden md:flex items-center gap-8 font-headline text-sm font-medium tracking-tight">
